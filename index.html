@@ -44,20 +44,35 @@
 
   h1,h2,h3,.font-display{font-family:var(--font-display); font-weight:700;}
 
-  /* ---------- placeholders de imagem ---------- */
-  .img-placeholder{
-    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
-    background:repeating-linear-gradient(135deg, var(--rosa-muito-claro), var(--rosa-muito-claro) 10px, #ffe6f0 10px, #ffe6f0 20px);
+  /* ===================================================================
+     ESPAÇOS DE IMAGEM (.img-box)
+     - Aceitam imagens em QUALQUER formato/proporção (retrato, paisagem,
+       quadrada) sem cortar e sem distorcer: object-fit: contain cuida disso.
+     - Enquanto o atributo src estiver vazio, aparece o quadriculado rosa
+       tracejado como placeholder. Assim que você preencher o src com o
+       caminho da sua imagem, o placeholder some sozinho e a imagem some
+       centralizada dentro do espaço.
+     COMO USAR: procure `src=""` no HTML e troque por `src="caminho-da-sua-imagem.jpg"`
+     =================================================================== */
+  .img-box{
+    position:relative; width:100%; overflow:hidden;
+    border-radius:var(--radius);
     border:2.5px dashed var(--rosa-principal);
-    border-radius: var(--radius);
-    color:var(--rosa-escuro);
-    text-align:center;
-    font-size:.8rem;
-    font-weight:600;
-    padding:12px;
+    background:repeating-linear-gradient(135deg, var(--rosa-muito-claro), var(--rosa-muito-claro) 10px, #ffe6f0 10px, #ffe6f0 20px);
   }
-  .img-placeholder .ph-icon{font-size:1.8rem;}
-  .img-placeholder small{font-weight:400; opacity:.75; font-size:.68rem;}
+  .img-box.sem-cantos{border-radius:0;}
+  .img-fallback{
+    position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px;
+    color:var(--rosa-escuro); text-align:center; font-size:.8rem; font-weight:600; padding:14px;
+  }
+  .img-fallback .ph-icon{font-size:1.8rem;}
+  .img-fallback small{font-weight:400; opacity:.75; font-size:.68rem; max-width:200px;}
+  .user-img{
+    position:absolute; inset:0; width:100%; height:100%;
+    object-fit:contain; /* mostra a imagem inteira, seja qual for o formato */
+    background:var(--rosa-muito-claro);
+  }
+  .user-img[src=""]{display:none;} /* enquanto não houver src, some e deixa o placeholder visível */
 
   /* ---------- scroll reveal ---------- */
   .reveal{opacity:0; transform:translateY(28px); transition:opacity .7s ease, transform .7s ease;}
@@ -69,9 +84,7 @@
   /* ---------- decorative floaters ---------- */
   .deco{position:absolute; pointer-events:none; opacity:.55; color:var(--rosa-principal); z-index:0; animation:float 6s ease-in-out infinite;}
   .deco.slow{animation-duration:9s;}
-  .deco.spin{animation:spin 12s linear infinite;}
   @keyframes float{0%,100%{transform:translateY(0) rotate(0deg);} 50%{transform:translateY(-16px) rotate(8deg);}}
-  @keyframes spin{from{transform:rotate(0deg);} to{transform:rotate(360deg);}}
 
   /* =================== NAVBAR =================== */
   header{
@@ -151,6 +164,7 @@
     width:340px; height:400px; border-radius:44% 56% 48% 52%/54% 48% 52% 46%;
     border:6px solid var(--branco); box-shadow:var(--sombra); position:relative; z-index:2; overflow:hidden;
   }
+  .hero-photo-frame .img-box{position:absolute; inset:0; border:none; border-radius:0;}
   .tech-chip{
     position:absolute; background:var(--branco); border-radius:14px; padding:8px 16px; font-weight:600; font-size:.85rem;
     box-shadow:var(--sombra); color:var(--rosa-escuro); z-index:3; animation:float 5s ease-in-out infinite;
@@ -167,7 +181,7 @@
 
   .polaroid{background:var(--branco); padding:14px 14px 40px; border-radius:10px; box-shadow:var(--sombra); transform:rotate(-4deg); transition:transform .3s ease;}
   .polaroid:hover{transform:rotate(0deg) scale(1.02);}
-  .polaroid .img-placeholder{aspect-ratio:3/4; width:100%;}
+  .polaroid .img-box{aspect-ratio:3/4; width:100%;}
 
   .sticky-note{
     background:#FFF6DA; padding:22px 24px; border-radius:6px; box-shadow:var(--sombra);
@@ -209,8 +223,7 @@
     transition:transform .35s cubic-bezier(.34,1.56,.64,1), box-shadow .35s ease; position:relative;
   }
   .project-card:hover{transform:translateY(-10px); box-shadow:var(--sombra-hover);}
-  .project-card .img-placeholder{aspect-ratio:16/10; border-radius:0;}
-  .project-card .img-placeholder:hover{transform:none;}
+  .project-card .img-box{aspect-ratio:16/10;}
   .project-tag{position:absolute; top:14px; left:14px; background:var(--rosa-escuro); color:#fff; font-size:.7rem; font-weight:700; padding:6px 12px; border-radius:999px; z-index:2;}
   .project-body{padding:20px;}
   .project-body h4{font-size:1.15rem; color:var(--rosa-escuro); margin-bottom:6px;}
@@ -236,7 +249,7 @@
   .site-card:hover{transform:translateY(-8px); box-shadow:var(--sombra-hover);}
   .browser-bar{display:flex; gap:6px; padding:10px 14px; background:#F3E3EA;}
   .browser-dot{width:9px; height:9px; border-radius:50%; background:var(--rosa-principal); opacity:.6;}
-  .site-card .img-placeholder{aspect-ratio:16/10; border-radius:0;}
+  .site-card .img-box{aspect-ratio:16/10;}
   .site-card-body{padding:16px; text-align:center;}
   .site-card-body h5{color:var(--rosa-escuro); margin-bottom:12px; font-size:1rem;}
 
@@ -333,7 +346,7 @@
 <!-- ============ HEADER / NAV ============ -->
 <header>
   <div class="nav-wrap">
-    <a href="#inicio" class="logo">Ana Clara♡</a>
+    <a href="#inicio" class="logo">seu nome ♡</a>
     <nav class="nav-links">
       <a href="#inicio" class="active">Início</a>
       <a href="#sobre">Sobre mim</a>
@@ -342,9 +355,9 @@
       <a href="#sites">Meus sites</a>
       <a href="#contato">Contato</a>
     </nav>
-    <a href="#" class="btn btn-github btn-sm" style="display:none" id="gh-desktop">GitHub ↗</a>
     <div style="display:flex; align-items:center; gap:16px;">
-      <a href="#" class="btn btn-github btn-sm nav-github">GitHub ↗</a>
+      <!-- 🔗 LINK EXTERNO: coloque a URL do seu perfil do GitHub -->
+      <a href="https://github.com/SEU-USUARIO" target="_blank" rel="noopener noreferrer" class="btn btn-github btn-sm">GitHub ↗</a>
       <button class="hamburger" id="hamburger" aria-label="Abrir menu"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -366,7 +379,7 @@
   <div class="deco" style="top:70%; left:8%; font-size:1.3rem;">♡</div>
   <div class="hero-text">
     <div class="badge reveal">OLÁ, EU SOU ♡</div>
-    <h1 class="reveal">Ana Clara <span style="font-size:2.2rem;">♡</span></h1>
+    <h1 class="reveal">seu nome <span style="font-size:2.2rem;">♡</span></h1>
     <p class="subtitle reveal reveal-delay-1">Desenvolvedora Web &amp; Criativa Digital ✦</p>
     <p class="desc reveal reveal-delay-2">Transformo ideias em experiências digitais que <span class="highlight">conectam</span>, <span class="highlight">encantam</span> e <span class="highlight">fazem sentido</span>.</p>
     <div class="hero-buttons reveal reveal-delay-3">
@@ -376,11 +389,14 @@
   </div>
   <div class="hero-visual reveal reveal-delay-2">
     <div class="hero-photo-frame">
-      <div class="img-placeholder" style="height:100%; border-radius:0;">
-        <img src="Eu.jpg" alt="">
-        <span class="ph-icon"></span>
-        <span></span>
-        <small></small>
+      <!-- ESPAÇO PARA IMAGEM: sua foto de perfil, qualquer formato -->
+      <div class="img-box">
+        <div class="img-fallback">
+          <span class="ph-icon">🖼️</span>
+          <span>SUA FOTO AQUI</span>
+          <small>qualquer formato — retrato, paisagem ou quadrada</small>
+        </div>
+        <img class="user-img" src="" alt="Foto de perfil">
       </div>
     </div>
     <div class="tech-chip" style="top:8%; left:0;">&lt;html&gt;</div>
@@ -395,9 +411,13 @@
   <div class="sobre-grid">
     <div class="reveal">
       <div class="polaroid">
-        <div class="img-placeholder">
-          <span class="ph-icon"></span>
-          <span></span>
+        <!-- ESPAÇO PARA IMAGEM: foto sua para o polaroid -->
+        <div class="img-box">
+          <div class="img-fallback">
+            <span class="ph-icon">🖼️</span>
+            <span>SUA FOTO AQUI</span>
+          </div>
+          <img class="user-img" src="" alt="Foto pessoal">
         </div>
       </div>
       <div class="sticky-note">
@@ -407,7 +427,7 @@
           <li>✦ Apaixonada por tecnologia</li>
           <li>✦ Ama moda alternativa</li>
           <li>✦ Gosta de design</li>
-          <li>✦ Perfeccionista</li>
+          <li>✦ Café é vida</li>
           <li>✦ Escuta rock/indie</li>
         </ul>
       </div>
@@ -424,9 +444,9 @@
     <div class="reveal reveal-delay-2">
       <div class="info-card">
         <ul>
-          <li>📍 Belo Horizonte,MG</li>
-          <li>🎓 Cotemig</li>
-          <li>💻 </li>
+          <li>📍 Sua cidade, UF</li>
+          <li>🎓 Sua instituição de ensino</li>
+          <li>💻 Seu curso</li>
           <li>✦ Em constante evolução</li>
         </ul>
       </div>
@@ -471,60 +491,83 @@
 <!-- ============ PROJETOS ============ -->
 <section id="projetos" class="projetos">
   <h2 class="section-title reveal">✦ projetos ♡</h2>
-  <p class="section-sub reveal">Alguns projetos que desenvolvi com muito energético e código </p>
+  <p class="section-sub reveal">Alguns projetos que desenvolvi com muito café e código ☕</p>
 
   <div class="carousel-wrap">
     <button class="carousel-arrow left" id="prevBtn">‹</button>
     <div class="carousel-track reveal">
+
+      <!-- ===== PROJETO 1 ===== -->
       <article class="project-card">
         <span class="project-tag">Em destaque</span>
-        <div class="img-placeholder"><span class="ph-icon"></span><span></span></div>
+        <!-- ESPAÇO PARA IMAGEM: print/screenshot do projeto 1 -->
+        <div class="img-box sem-cantos">
+          <div class="img-fallback"><span class="ph-icon">🖼️</span><span>PRINT DO PROJETO</span></div>
+          <img class="user-img" src="" alt="Print do Projeto 1">
+        </div>
         <div class="project-body">
           <h4>Nome do Projeto 1</h4>
           <p>Breve descrição do projeto e o problema que ele resolve.</p>
           <div class="tech-line">HTML • CSS • JavaScript</div>
           <div class="project-actions">
-            <a href="#" class="btn btn-primary btn-sm">Visitar site ↗</a>
-            <a href="#" class="btn btn-outline btn-sm">Ver código ⌥</a>
+            <!-- 🔗 LINKS EXTERNOS do projeto 1 -->
+            <a href="https://SEU-LINK-DO-SITE-AQUI" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Visitar site ↗</a>
+            <a href="https://github.com/SEU-USUARIO/SEU-REPOSITORIO" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">Ver código ⌥</a>
           </div>
         </div>
       </article>
+
+      <!-- ===== PROJETO 2 ===== -->
       <article class="project-card">
-        <div class="img-placeholder"><span class="ph-icon"></span><span></span></div>
+        <div class="img-box sem-cantos">
+          <div class="img-fallback"><span class="ph-icon">🖼️</span><span>PRINT DO PROJETO</span></div>
+          <img class="user-img" src="" alt="Print do Projeto 2">
+        </div>
         <div class="project-body">
           <h4>Nome do Projeto 2</h4>
           <p>Breve descrição do projeto e o problema que ele resolve.</p>
           <div class="tech-line">HTML • CSS • JavaScript</div>
           <div class="project-actions">
-            <a href="#" class="btn btn-primary btn-sm">Visitar site ↗</a>
-            <a href="#" class="btn btn-outline btn-sm">Ver código ⌥</a>
+            <a href="https://SEU-LINK-DO-SITE-AQUI" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Visitar site ↗</a>
+            <a href="https://github.com/SEU-USUARIO/SEU-REPOSITORIO" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">Ver código ⌥</a>
           </div>
         </div>
       </article>
+
+      <!-- ===== PROJETO 3 ===== -->
       <article class="project-card">
-        <div class="img-placeholder"><span class="ph-icon"></span><span></span></div>
+        <div class="img-box sem-cantos">
+          <div class="img-fallback"><span class="ph-icon">🖼️</span><span>PRINT DO PROJETO</span></div>
+          <img class="user-img" src="" alt="Print do Projeto 3">
+        </div>
         <div class="project-body">
           <h4>Nome do Projeto 3</h4>
           <p>Breve descrição do projeto e o problema que ele resolve.</p>
           <div class="tech-line">HTML • CSS • JavaScript</div>
           <div class="project-actions">
-            <a href="#" class="btn btn-primary btn-sm">Visitar site ↗</a>
-            <a href="#" class="btn btn-outline btn-sm">Ver código ⌥</a>
+            <a href="https://SEU-LINK-DO-SITE-AQUI" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Visitar site ↗</a>
+            <a href="https://github.com/SEU-USUARIO/SEU-REPOSITORIO" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">Ver código ⌥</a>
           </div>
         </div>
       </article>
+
+      <!-- ===== PROJETO 4 ===== -->
       <article class="project-card">
-        <div class="img-placeholder"><span class="ph-icon">🖼️</span><span>PRINT DO PROJETO</span></div>
+        <div class="img-box sem-cantos">
+          <div class="img-fallback"><span class="ph-icon">🖼️</span><span>PRINT DO PROJETO</span></div>
+          <img class="user-img" src="" alt="Print do Projeto 4">
+        </div>
         <div class="project-body">
           <h4>Nome do Projeto 4</h4>
           <p>Breve descrição do projeto e o problema que ele resolve.</p>
           <div class="tech-line">HTML • CSS • JavaScript</div>
           <div class="project-actions">
-            <a href="#" class="btn btn-primary btn-sm">Visitar site ↗</a>
-            <a href="#" class="btn btn-outline btn-sm">Ver código ⌥</a>
+            <a href="https://SEU-LINK-DO-SITE-AQUI" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Visitar site ↗</a>
+            <a href="https://github.com/SEU-USUARIO/SEU-REPOSITORIO" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">Ver código ⌥</a>
           </div>
         </div>
       </article>
+
     </div>
     <button class="carousel-arrow right" id="nextBtn">›</button>
     <div class="dots">
@@ -539,38 +582,61 @@
   <p class="section-sub reveal">Sites publicados e disponíveis online!</p>
 
   <div class="sites-grid reveal">
+
+    <!-- ===== SITE 1 ===== -->
     <div class="site-card">
       <div class="browser-bar"><span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span></div>
-      <div class="img-placeholder"><span class="ph-icon">🖼️</span><span>PRINT DO SITE</span></div>
+      <!-- ESPAÇO PARA IMAGEM: print do site 1 -->
+      <div class="img-box sem-cantos">
+        <div class="img-fallback"><span class="ph-icon">🖼️</span><span>PRINT DO SITE</span></div>
+        <img class="user-img" src="" alt="Print do Site 1">
+      </div>
       <div class="site-card-body">
         <h5>NOME DO SITE 1</h5>
-        <a href="#" class="btn btn-outline btn-sm">Acessar site ↗</a>
+        <!-- 🔗 LINK EXTERNO: URL do site publicado -->
+        <a href="https://SEU-LINK-DO-SITE-AQUI" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">Acessar site ↗</a>
       </div>
     </div>
+
+    <!-- ===== SITE 2 ===== -->
     <div class="site-card">
       <div class="browser-bar"><span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span></div>
-      <div class="img-placeholder"><span class="ph-icon">🖼️</span><span>PRINT DO SITE</span></div>
+      <div class="img-box sem-cantos">
+        <div class="img-fallback"><span class="ph-icon">🖼️</span><span>PRINT DO SITE</span></div>
+        <img class="user-img" src="" alt="Print do Site 2">
+      </div>
       <div class="site-card-body">
         <h5>NOME DO SITE 2</h5>
-        <a href="#" class="btn btn-outline btn-sm">Acessar site ↗</a>
+        <a href="https://SEU-LINK-DO-SITE-AQUI" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">Acessar site ↗</a>
       </div>
     </div>
+
+    <!-- ===== SITE 3 ===== -->
     <div class="site-card">
       <div class="browser-bar"><span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span></div>
-      <div class="img-placeholder"><span class="ph-icon">🖼️</span><span>PRINT DO SITE</span></div>
+      <div class="img-box sem-cantos">
+        <div class="img-fallback"><span class="ph-icon">🖼️</span><span>PRINT DO SITE</span></div>
+        <img class="user-img" src="" alt="Print do Site 3">
+      </div>
       <div class="site-card-body">
         <h5>NOME DO SITE 3</h5>
-        <a href="#" class="btn btn-outline btn-sm">Acessar site ↗</a>
+        <a href="https://SEU-LINK-DO-SITE-AQUI" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">Acessar site ↗</a>
       </div>
     </div>
+
+    <!-- ===== SITE 4 ===== -->
     <div class="site-card">
       <div class="browser-bar"><span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span></div>
-      <div class="img-placeholder"><span class="ph-icon">🖼️</span><span>PRINT DO SITE</span></div>
+      <div class="img-box sem-cantos">
+        <div class="img-fallback"><span class="ph-icon">🖼️</span><span>PRINT DO SITE</span></div>
+        <img class="user-img" src="" alt="Print do Site 4">
+      </div>
       <div class="site-card-body">
         <h5>NOME DO SITE 4</h5>
-        <a href="#" class="btn btn-outline btn-sm">Acessar site ↗</a>
+        <a href="https://SEU-LINK-DO-SITE-AQUI" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">Acessar site ↗</a>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -608,7 +674,8 @@
       <div class="gh-icon">🐙</div>
       <h5 style="font-family:var(--font-display); font-size:1.15rem;">meu código vive aqui!</h5>
       <p>Veja mais projetos, estudos e experimentos no meu GitHub.</p>
-      <a href="#" class="btn btn-primary btn-sm" style="background:#fff; color:var(--vinho);">Visitar GitHub ↗</a>
+      <!-- 🔗 LINK EXTERNO: URL do seu perfil do GitHub -->
+      <a href="https://github.com/SEU-USUARIO" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="background:#fff; color:var(--vinho);">Visitar GitHub ↗</a>
     </div>
   </div>
 </section>
@@ -627,11 +694,12 @@
       <a href="#projetos">Projetos</a>
       <a href="#contato">Contato</a>
     </nav>
+    <!-- 🔗 LINKS EXTERNOS: suas redes sociais -->
     <div class="footer-social">
-      <a href="#" aria-label="GitHub">🐙</a>
-      <a href="#" aria-label="LinkedIn">in</a>
-      <a href="#" aria-label="Instagram">📷</a>
-      <a href="#" aria-label="Email">✉</a>
+      <a href="https://github.com/SEU-USUARIO" target="_blank" rel="noopener noreferrer" aria-label="GitHub">🐙</a>
+      <a href="https://linkedin.com/in/SEU-USUARIO" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">in</a>
+      <a href="https://instagram.com/SEU-USUARIO" target="_blank" rel="noopener noreferrer" aria-label="Instagram">📷</a>
+      <a href="mailto:seuemail@exemplo.com" aria-label="Email">✉</a>
     </div>
   </div>
   <p class="footer-bottom">© 2026 seu nome. Feito com ♡ e muito código.</p>
@@ -680,8 +748,7 @@
 
   document.getElementById('toTop').addEventListener('click', ()=>window.scrollTo({top:0, behavior:'smooth'}));
 
-  // carrossel simples de projetos (mobile 1 por vez / desktop mostra todos, arrows só reordenam no mobile)
-  const track = document.querySelector('.carousel-track');
+  // carrossel simples de projetos
   const dots = document.querySelectorAll('.dot');
   let index = 0;
   function updateDots(){ dots.forEach((d,i)=>d.classList.toggle('active', i===index)); }

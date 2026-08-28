@@ -44,16 +44,6 @@
 
   h1,h2,h3,.font-display{font-family:var(--font-display); font-weight:700;}
 
-  /* ===================================================================
-     ESPAÇOS DE IMAGEM (.img-box)
-     - Aceitam imagens em QUALQUER formato/proporção (retrato, paisagem,
-       quadrada) sem cortar e sem distorcer: object-fit: contain cuida disso.
-     - Enquanto o atributo src estiver vazio, aparece o quadriculado rosa
-       tracejado como placeholder. Assim que você preencher o src com o
-       caminho da sua imagem, o placeholder some sozinho e a imagem some
-       centralizada dentro do espaço.
-     COMO USAR: procure `src=""` no HTML e troque por `src="caminho-da-sua-imagem.jpg"`
-     =================================================================== */
   .img-box{
     position:relative; width:100%; overflow:hidden;
     border-radius:var(--radius);
@@ -414,7 +404,7 @@
         <!-- ESPAÇO PARA IMAGEM: foto sua para o polaroid -->
         <div class="img-box">
           <div class="img-fallback">
-            <span class="ph-icon">🖼️</span>
+            <span class="ph-icon"></span>
             <span>SUA FOTO AQUI</span>
           </div>
           <img class="user-img" src="Eu2.jpg" alt="Foto pessoal">
@@ -502,12 +492,12 @@
         <span class="project-tag">Em destaque</span>
         <!-- ESPAÇO PARA IMAGEM: print/screenshot do projeto 1 -->
         <div class="img-box sem-cantos">
-          <div class="img-fallback"><span class="ph-icon">🖼️</span><span>PRINT DO PROJETO</span></div>
+          <div class="img-fallback"><span class="ph-icon"></span><span></span></div>
           <img class="user-img" src="" alt="Print do Projeto 1">
         </div>
         <div class="project-body">
-          <h4>Nome do Projeto 1</h4>
-          <p>Breve descrição do projeto e o problema que ele resolve.</p>
+          <h4></h4>Projeto 1</h4>
+          <p>Descrição</p>
           <div class="tech-line">HTML • CSS • JavaScript</div>
           <div class="project-actions">
             <!-- 🔗 LINKS EXTERNOS do projeto 1 -->
@@ -520,12 +510,12 @@
       <!-- ===== PROJETO 2 ===== -->
       <article class="project-card">
         <div class="img-box sem-cantos">
-          <div class="img-fallback"><span class="ph-icon">🖼️</span><span>PRINT DO PROJETO</span></div>
+          <div class="img-fallback"><span class="ph-icon"></span><span></span></div>
           <img class="user-img" src="" alt="Print do Projeto 2">
         </div>
         <div class="project-body">
-          <h4>Nome do Projeto 2</h4>
-          <p>Breve descrição do projeto e o problema que ele resolve.</p>
+          <h4>Projeto 2</h4>
+          <p>Descrição</p>
           <div class="tech-line">HTML • CSS • JavaScript</div>
           <div class="project-actions">
             <a href="https://SEU-LINK-DO-SITE-AQUI" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Visitar site ↗</a>
@@ -537,12 +527,12 @@
       <!-- ===== PROJETO 3 ===== -->
       <article class="project-card">
         <div class="img-box sem-cantos">
-          <div class="img-fallback"><span class="ph-icon">🖼️</span><span>PRINT DO PROJETO</span></div>
+          <div class="img-fallback"><span class="ph-icon"></span><span></span></div>
           <img class="user-img" src="" alt="Print do Projeto 3">
         </div>
         <div class="project-body">
-          <h4>Nome do Projeto 3</h4>
-          <p>Breve descrição do projeto e o problema que ele resolve.</p>
+          <h4>Projeto 3</h4>
+          <p>Descrição</p>
           <div class="tech-line">HTML • CSS • JavaScript</div>
           <div class="project-actions">
             <a href="https://SEU-LINK-DO-SITE-AQUI" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Visitar site ↗</a>
@@ -554,12 +544,12 @@
       <!-- ===== PROJETO 4 ===== -->
       <article class="project-card">
         <div class="img-box sem-cantos">
-          <div class="img-fallback"><span class="ph-icon">🖼️</span><span>PRINT DO PROJETO</span></div>
+          <div class="img-fallback"><span class="ph-icon"></span><span></span></div>
           <img class="user-img" src="" alt="Print do Projeto 4">
         </div>
         <div class="project-body">
-          <h4>Nome do Projeto 4</h4>
-          <p>Breve descrição do projeto e o problema que ele resolve.</p>
+          <h4>Projeto 4</h4>
+          <p>descrição</p>
           <div class="tech-line">HTML • CSS • JavaScript</div>
           <div class="project-actions">
             <a href="https://SEU-LINK-DO-SITE-AQUI" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Visitar site ↗</a>
@@ -588,8 +578,8 @@
       <div class="browser-bar"><span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span></div>
       <!-- ESPAÇO PARA IMAGEM: print do site 1 -->
       <div class="img-box sem-cantos">
-        <div class="img-fallback"><span class="ph-icon">🖼️</span><span>PRINT DO SITE</span></div>
-        <img class="user-img" src="" alt="Print do Site 1">
+        <div class="img-fallback"><span class="ph-icon"></span><span></span></div>
+        <img class="user-img" src="" alt="Site 1">
       </div>
       <div class="site-card-body">
         <h5>NOME DO SITE 1</h5>
@@ -602,11 +592,11 @@
     <div class="site-card">
       <div class="browser-bar"><span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span></div>
       <div class="img-box sem-cantos">
-        <div class="img-fallback"><span class="ph-icon">🖼️</span><span>PRINT DO SITE</span></div>
+        <div class="img-fallback"><span class="ph-icon"></span><span></span></div>
         <img class="user-img" src="" alt="Print do Site 2">
       </div>
       <div class="site-card-body">
-        <h5>NOME DO SITE 2</h5>
+        <h5>SITE 2</h5>
         <a href="https://SEU-LINK-DO-SITE-AQUI" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">Acessar site ↗</a>
       </div>
     </div>
@@ -615,11 +605,11 @@
     <div class="site-card">
       <div class="browser-bar"><span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span></div>
       <div class="img-box sem-cantos">
-        <div class="img-fallback"><span class="ph-icon">🖼️</span><span>PRINT DO SITE</span></div>
+        <div class="img-fallback"><span class="ph-icon"></span><span></span></div>
         <img class="user-img" src="" alt="Print do Site 3">
       </div>
       <div class="site-card-body">
-        <h5>NOME DO SITE 3</h5>
+        <h5>SITE 3</h5>
         <a href="https://SEU-LINK-DO-SITE-AQUI" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">Acessar site ↗</a>
       </div>
     </div>
@@ -628,11 +618,11 @@
     <div class="site-card">
       <div class="browser-bar"><span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span></div>
       <div class="img-box sem-cantos">
-        <div class="img-fallback"><span class="ph-icon">🖼️</span><span>PRINT DO SITE</span></div>
+        <div class="img-fallback"><span class="ph-icon"></span><span></span></div>
         <img class="user-img" src="" alt="Print do Site 4">
       </div>
       <div class="site-card-body">
-        <h5>NOME DO SITE 4</h5>
+        <h5>SITE 4</h5>
         <a href="https://SEU-LINK-DO-SITE-AQUI" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">Acessar site ↗</a>
       </div>
     </div>

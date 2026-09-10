@@ -6,6 +6,8 @@
 <title>seu nome ♡ — Portfólio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Poppins:wght@300;400;500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 <style>
   :root{
     --rosa-principal:#F58DB5;
@@ -34,11 +36,11 @@
     overflow-x:hidden;
   }
   @media (prefers-reduced-motion: reduce){
-    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}\n    [data-aos]{opacity:1 !important; transform:none !important;}
   }
 
   a{text-decoration:none;color:inherit;}
-  ul{list-style:none;}
+  ul{list-style:none; margin:0; padding:0;}
   img{max-width:100%;display:block;}
   section{position:relative;}
 
@@ -64,19 +66,12 @@
   }
   .user-img[src=""]{display:none;} /* enquanto não houver src, some e deixa o placeholder visível */
 
-  /* ---------- scroll reveal ---------- */
-  .reveal{opacity:0; transform:translateY(28px); transition:opacity .7s ease, transform .7s ease;}
-  .reveal.in-view{opacity:1; transform:translateY(0);}
-  .reveal-delay-1{transition-delay:.1s;}
-  .reveal-delay-2{transition-delay:.2s;}
-  .reveal-delay-3{transition-delay:.3s;}
-
   /* ---------- decorative floaters ---------- */
   .deco{position:absolute; pointer-events:none; opacity:.55; color:var(--rosa-principal); z-index:0; animation:float 6s ease-in-out infinite;}
   .deco.slow{animation-duration:9s;}
   @keyframes float{0%,100%{transform:translateY(0) rotate(0deg);} 50%{transform:translateY(-16px) rotate(8deg);}}
 
-  /* =================== NAVBAR =================== */
+  /* NAVBAR */
   header{
     position:sticky; top:0; z-index:100;
     background:rgba(255,249,245,0.9);
@@ -88,7 +83,7 @@
     display:flex; align-items:center; justify-content:space-between;
   }
   .logo{font-family:var(--font-display); font-size:1.4rem; color:var(--rosa-escuro); display:flex; align-items:center; gap:6px;}
-  .nav-links{display:flex; gap:34px; align-items:center;}
+  .nav-links ul{display:flex; gap:34px; align-items:center;}
   .nav-links a{
     font-weight:500; font-size:.95rem; color:var(--texto); position:relative; padding:4px 0;
     transition:color .25s ease;
@@ -129,11 +124,11 @@
     z-index:150; padding:100px 32px 32px; display:flex; flex-direction:column; gap:26px;
   }
   .mobile-menu.open{transform:translateX(0);}
-  .mobile-menu a{font-size:1.1rem; font-weight:600; color:var(--vinho);}
+  .mobile-menu ul{display:flex; flex-direction:column; gap:26px;}\n  .mobile-menu a{font-size:1.1rem; font-weight:600; color:var(--vinho);}
   .menu-overlay{position:fixed; inset:0; background:rgba(122,49,83,.35); z-index:140; opacity:0; pointer-events:none; transition:opacity .3s ease;}
   .menu-overlay.open{opacity:1; pointer-events:auto;}
 
-  /* =================== HERO =================== */
+  /* HERO */
   .hero{
     max-width:1240px; margin:0 auto; padding:70px 32px 100px;
     display:grid; grid-template-columns:1.1fr 0.9fr; gap:40px; align-items:center;
@@ -160,7 +155,7 @@
     box-shadow:var(--sombra); color:var(--rosa-escuro); z-index:3; animation:float 5s ease-in-out infinite;
   }
 
-  /* =================== SOBRE MIM =================== */
+  /* SOBRE MIM */
   .section-title{
     font-size:2.2rem; color:var(--rosa-escuro); display:flex; align-items:center; gap:10px; justify-content:center; margin-bottom:8px;
   }
@@ -190,7 +185,7 @@
   .info-card li{padding:10px 0; display:flex; gap:10px; align-items:center; font-size:.92rem; border-bottom:1px dashed var(--rosa-claro);}
   .info-card li:last-child{border-bottom:none;}
 
-  /* =================== HABILIDADES =================== */
+  /* HABILIDADES */
   .habilidades{padding:90px 32px; max-width:1240px; margin:0 auto;}
   .skills-cols{display:grid; grid-template-columns:1fr 1fr; gap:60px;}
   .skills-col h3{display:flex; align-items:center; gap:8px; justify-content:center; color:var(--rosa-escuro); font-size:1.3rem; margin-bottom:26px;}
@@ -204,10 +199,10 @@
   .skill-card:hover .skill-icon{transform:scale(1.18) rotate(-6deg);}
   .skill-card span{font-size:.78rem; font-weight:600; color:var(--vinho);}
 
-  /* =================== PROJETOS =================== */
+  /* PROJETOS */
   .projetos{background:var(--rosa-muito-claro); padding:90px 32px;}
   .carousel-wrap{max-width:1240px; margin:0 auto; position:relative;}
-  .carousel-track{display:grid; grid-template-columns:repeat(4,1fr); gap:24px; overflow:hidden;}
+  .project-swiper{overflow:hidden; padding:10px 4px 34px;}\n  .swiper-slide{height:auto;}
   .project-card{
     background:var(--branco); border-radius:20px; overflow:hidden; box-shadow:var(--sombra);
     transition:transform .35s cubic-bezier(.34,1.56,.64,1), box-shadow .35s ease; position:relative;
@@ -228,11 +223,11 @@
   .carousel-arrow:hover{background:var(--rosa-principal); color:#fff; transform:translateY(-50%) scale(1.1);}
   .carousel-arrow.left{left:-22px;}
   .carousel-arrow.right{right:-22px;}
-  .dots{display:flex; justify-content:center; gap:8px; margin-top:26px;}
-  .dot{width:9px; height:9px; border-radius:50%; background:var(--rosa-claro); cursor:pointer; transition:all .25s ease;}
-  .dot.active{background:var(--rosa-escuro); width:24px; border-radius:5px;}
+  .swiper-pagination{bottom:0 !important;}
+  .swiper-pagination-bullet{background:var(--rosa-claro); opacity:1;}
+  .swiper-pagination-bullet-active{background:var(--rosa-escuro); width:24px; border-radius:5px;}
 
-  /* =================== MEUS SITES =================== */
+  /* MEUS SITES */
   .meus-sites{padding:90px 32px; max-width:1240px; margin:0 auto;}
   .sites-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:24px;}
   .site-card{background:var(--branco); border-radius:18px; overflow:hidden; box-shadow:var(--sombra); transition:transform .3s ease, box-shadow .3s ease;}
@@ -243,7 +238,7 @@
   .site-card-body{padding:16px; text-align:center;}
   .site-card-body h5{color:var(--rosa-escuro); margin-bottom:12px; font-size:1rem;}
 
-  /* =================== POR TRÁS / CONTATO =================== */
+  /* POR TRÁS / CONTATO */
   .por-tras{background:var(--rosa-muito-claro); padding:90px 32px;}
   .por-tras-grid{max-width:1240px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr 0.9fr; gap:28px;}
   .qa-card{background:var(--branco); border-radius:18px; padding:24px; box-shadow:var(--sombra);}
@@ -267,11 +262,11 @@
   .github-card .gh-icon{font-size:2.6rem;}
   .github-card p{font-size:.85rem; opacity:.9;}
 
-  /* =================== FOOTER =================== */
+  /* FOOTER */
   footer{background:var(--rosa-principal); color:#fff; padding:50px 32px 24px;}
   .footer-wrap{max-width:1240px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:20px; padding-bottom:24px; border-bottom:1px solid rgba(255,255,255,.3);}
   .footer-logo{font-family:var(--font-display); font-size:1.3rem; display:flex; align-items:center; gap:6px;}
-  .footer-links{display:flex; gap:24px; flex-wrap:wrap;}
+  .footer-links ul{display:flex; gap:24px; flex-wrap:wrap;}
   .footer-links a{font-size:.9rem; opacity:.9; transition:opacity .2s ease;}
   .footer-links a:hover{opacity:1; text-decoration:underline;}
   .footer-social{display:flex; gap:14px;}
@@ -279,7 +274,7 @@
   .footer-social a:hover{background:#fff; color:var(--rosa-escuro); transform:translateY(-4px);}
   .footer-bottom{max-width:1240px; margin:0 auto; padding-top:20px; text-align:center; font-size:.8rem; opacity:.85;}
 
-  /* =================== back to top =================== */
+  /* back to top */
   .to-top{
     position:fixed; bottom:28px; right:28px; width:48px; height:48px; border-radius:50%; background:var(--rosa-principal);
     color:#fff; display:flex; align-items:center; justify-content:center; box-shadow:var(--sombra-hover); cursor:pointer;
@@ -288,12 +283,12 @@
   .to-top.show{opacity:1; pointer-events:auto;}
   .to-top:hover{transform:translateY(-4px) scale(1.05);}
 
-  /* =================== RESPONSIVE =================== */
+  /* RESPONSIVE */
   @media (max-width:1024px){
     .sobre-grid{grid-template-columns:1fr 1fr;}
     .info-card{grid-column:1/-1;}
     .skills-grid{grid-template-columns:repeat(4,1fr);}
-    .carousel-track{grid-template-columns:repeat(2,1fr);}
+    
     .sites-grid{grid-template-columns:repeat(2,1fr);}
     .por-tras-grid{grid-template-columns:1fr 1fr;}
     .form-card{grid-column:1/-1;}
@@ -311,7 +306,7 @@
     .sobre-grid{grid-template-columns:1fr;}
     .skills-cols{grid-template-columns:1fr; gap:40px;}
     .skills-grid{grid-template-columns:repeat(3,1fr);}
-    .carousel-track{grid-template-columns:1fr; }
+    
     .carousel-arrow{display:none;}
     .sites-grid{grid-template-columns:1fr 1fr;}
     .por-tras-grid{grid-template-columns:1fr;}
@@ -333,17 +328,19 @@
 </head>
 <body>
 
-<!-- ============ HEADER / NAV ============ -->
+<!-- HEADER / NAV -->
 <header>
   <div class="nav-wrap">
     <a href="#inicio" class="logo">Ana Clara ♡</a>
-    <nav class="nav-links">
-      <a href="#inicio" class="active">Início</a>
-      <a href="#sobre">Sobre mim</a>
-      <a href="#habilidades">Habilidades</a>
-      <a href="#projetos">Projetos</a>
-      <a href="#sites">Meus sites</a>
-      <a href="#contato">Contato</a>
+    <nav class="nav-links" aria-label="Navegação principal">
+      <ul>
+        <li><a href="#inicio" class="active">Início</a></li>
+        <li><a href="#sobre">Sobre mim</a></li>
+        <li><a href="#habilidades">Habilidades</a></li>
+        <li><a href="#projetos">Projetos</a></li>
+        <li><a href="#sites">Meus sites</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
     </nav>
     <div style="display:flex; align-items:center; gap:16px;">
       <!-- 🔗 LINK EXTERNO: coloque a URL do seu perfil do GitHub -->
@@ -354,30 +351,32 @@
 </header>
 
 <div class="menu-overlay" id="overlay"></div>
-<nav class="mobile-menu" id="mobileMenu">
-  <a href="#inicio">Início</a>
-  <a href="#sobre">Sobre mim</a>
-  <a href="#habilidades">Habilidades</a>
-  <a href="#projetos">Projetos</a>
-  <a href="#sites">Meus sites</a>
-  <a href="#contato">Contato</a>
+<nav class="mobile-menu" id="mobileMenu" aria-label="Navegação mobile">
+  <ul>
+    <li><a href="#inicio">Início</a></li>
+    <li><a href="#sobre">Sobre mim</a></li>
+    <li><a href="#habilidades">Habilidades</a></li>
+    <li><a href="#projetos">Projetos</a></li>
+    <li><a href="#sites">Meus sites</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
 </nav>
 
-<!-- ============ HERO ============ -->
+<!-- HERO -->
 <section id="inicio" class="hero">
   <div class="deco slow" style="top:10%; left:2%; font-size:1.6rem;">✦</div>
   <div class="deco" style="top:70%; left:8%; font-size:1.3rem;">♡</div>
   <div class="hero-text">
-    <div class="badge reveal">OLÁ, EU SOU ♡</div>
+    <div class="badge" data-aos="fade-down">OLÁ, EU SOU ♡</div>
     <h1 class="reveal">Ana Clara <span style="font-size:2.2rem;">♡</span></h1>
-    <p class="subtitle reveal reveal-delay-1">Desenvolvedora Web &amp; Criativa Digital ✦</p>
-    <p class="desc reveal reveal-delay-2">Transformo ideias em experiências digitais que <span class="highlight">conectam</span>, <span class="highlight">encantam</span> e <span class="highlight">fazem sentido</span>.</p>
-    <div class="hero-buttons reveal reveal-delay-3">
+    <p class="subtitle" data-aos="fade-up" data-aos-delay="100">Desenvolvedora Web &amp; Criativa Digital ✦</p>
+    <p class="desc" data-aos="fade-up" data-aos-delay="180">Transformo ideias em experiências digitais que <span class="highlight">conectam</span>, <span class="highlight">encantam</span> e <span class="highlight">fazem sentido</span>.</p>
+    <div class="hero-buttons" data-aos="fade-up" data-aos-delay="260">
       <a href="#projetos" class="btn btn-primary">Conheça meu trabalho +</a>
       <a href="#sobre" class="btn btn-outline">Sobre mim ♡</a>
     </div>
   </div>
-  <div class="hero-visual reveal reveal-delay-2">
+  <div class="hero-visual" data-aos="zoom-in" data-aos-delay="150">
     <div class="hero-photo-frame">
       <!-- ESPAÇO PARA IMAGEM: sua foto de perfil, qualquer formato -->
       <div class="img-box">
@@ -396,7 +395,7 @@
   </div>
 </section>
 
-<!-- ============ SOBRE MIM ============ -->
+<!-- SOBRE MIM -->
 <section id="sobre" class="sobre-mim">
   <div class="sobre-grid">
     <div class="reveal">
@@ -423,7 +422,7 @@
       </div>
     </div>
 
-    <div class="sobre-texto reveal reveal-delay-1">
+    <div class="sobre-texto" data-aos="fade-up">
       <h2 class="section-title" style="justify-content:flex-start; margin-bottom:22px;">sobre mim ♡</h2>
       <p>Sou uma estudante de tecnologia apaixonada por desenvolvimento web, design e criação de experiências digitais.</p>
       <p>Desde que comecei minha jornada na programação, descobri que adoro transformar ideias em projetos que unem estética, funcionalidade e propósito.</p>
@@ -431,8 +430,8 @@
       <a href="#contato" class="btn btn-outline">Quer saber mais sobre mim? +</a>
     </div>
 
-    <div class="reveal reveal-delay-2">
-      <div class="info-card">
+    <div class="reveal">
+      <div class="info-card" data-aos="fade-left">
         <ul>
           <li>📍 Belo Horizonte, MG</li>
           <li>🎓 COTEMIG Barroca</li>
@@ -444,13 +443,13 @@
   </div>
 </section>
 
-<!-- ============ HABILIDADES ============ -->
+<!-- HABILIDADES -->
 <section id="habilidades" class="habilidades">
-  <h2 class="section-title reveal">✦ minhas habilidades ♡</h2>
-  <p class="section-sub reveal">O que uso no dia a dia para criar e resolver problemas</p>
+  <h2 class="section-title">✦ minhas habilidades ♡</h2>
+  <p class="section-sub">O que uso no dia a dia para criar e resolver problemas</p>
 
   <div class="skills-cols">
-    <div class="skills-col reveal">
+    <div class="skills-col" data-aos="fade-up">
       <h3>💻 hard skills</h3>
       <div class="skills-grid">
         <div class="skill-card"><span class="skill-icon">🌐</span><br><span>HTML</span></div>
@@ -464,7 +463,7 @@
       </div>
     </div>
 
-    <div class="skills-col reveal reveal-delay-1">
+    <div class="skills-col" data-aos="fade-up" data-aos-delay="100">
       <h3>♡ soft skills</h3>
       <div class="skills-grid">
         <div class="skill-card"><span class="skill-icon">💡</span><br><span>Criatividade</span></div>
@@ -478,17 +477,17 @@
   </div>
 </section>
 
-<!-- ============ PROJETOS ============ -->
+<!-- PROJETOS -->
 <section id="projetos" class="projetos">
-  <h2 class="section-title reveal">✦ projetos ♡</h2>
-  <p class="section-sub reveal">Alguns projetos que desenvolvi com muito café e código ☕</p>
+  <h2 class="section-title">✦ projetos ♡</h2>
+  <p class="section-sub">Alguns projetos que desenvolvi com muito café e código ☕</p>
 
   <div class="carousel-wrap">
     <button class="carousel-arrow left" id="prevBtn">‹</button>
-    <div class="carousel-track reveal">
+    <div class="swiper project-swiper"><div class="swiper-wrapper">
 
       <!-- ===== PROJETO 1 ===== -->
-      <article class="project-card">
+      <article class="project-card swiper-slide">
         <span class="project-tag">Em destaque</span>
         <!-- ESPAÇO PARA IMAGEM: print/screenshot do projeto 1 -->
         <div class="img-box sem-cantos">
@@ -496,7 +495,7 @@
           <img class="user-img" src="" alt="Print do Projeto 1">
         </div>
         <div class="project-body">
-          <h4></h4>Projeto 1</h4>
+          <h4>Projeto 1</h4>
           <p>Descrição</p>
           <div class="tech-line">HTML • CSS • JavaScript</div>
           <div class="project-actions">
@@ -508,7 +507,7 @@
       </article>
 
       <!-- ===== PROJETO 2 ===== -->
-      <article class="project-card">
+      <article class="project-card swiper-slide">
         <div class="img-box sem-cantos">
           <div class="img-fallback"><span class="ph-icon"></span><span></span></div>
           <img class="user-img" src="" alt="Print do Projeto 2">
@@ -525,7 +524,7 @@
       </article>
 
       <!-- ===== PROJETO 3 ===== -->
-      <article class="project-card">
+      <article class="project-card swiper-slide">
         <div class="img-box sem-cantos">
           <div class="img-fallback"><span class="ph-icon"></span><span></span></div>
           <img class="user-img" src="" alt="Print do Projeto 3">
@@ -542,7 +541,7 @@
       </article>
 
       <!-- ===== PROJETO 4 ===== -->
-      <article class="project-card">
+      <article class="project-card swiper-slide">
         <div class="img-box sem-cantos">
           <div class="img-fallback"><span class="ph-icon"></span><span></span></div>
           <img class="user-img" src="" alt="Print do Projeto 4">
@@ -559,19 +558,18 @@
       </article>
 
     </div>
-    <button class="carousel-arrow right" id="nextBtn">›</button>
-    <div class="dots">
-      <span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
     </div>
+    <button class="carousel-arrow right" id="nextBtn">›</button>
+    <div class="swiper-pagination"></div>
   </div>
 </section>
 
-<!-- ============ MEUS SITES ============ -->
+<!-- MEUS SITES -->
 <section id="sites" class="meus-sites">
-  <h2 class="section-title reveal">✦ meus sites ♡</h2>
-  <p class="section-sub reveal">Sites publicados e disponíveis online!</p>
+  <h2 class="section-title">✦ meus sites ♡</h2>
+  <p class="section-sub">Sites publicados e disponíveis online!</p>
 
-  <div class="sites-grid reveal">
+  <div class="sites-grid" data-aos="fade-up">
 
     <!-- ===== SITE 1 ===== -->
     <div class="site-card">
@@ -630,12 +628,12 @@
   </div>
 </section>
 
-<!-- ============ POR TRÁS DOS PROJETOS / CONTATO ============ -->
+<!-- POR TRÁS DOS PROJETOS / CONTATO -->
 <section id="contato" class="por-tras">
-  <h2 class="section-title reveal">✦ por trás dos projetos ♡</h2>
+  <h2 class="section-title">✦ por trás dos projetos ♡</h2>
 
   <div class="por-tras-grid">
-    <div class="qa-cards reveal">
+    <div class="qa-cards" data-aos="fade-up">
       <div class="qa-card">
         <h5>💭 Como tenho ideias?</h5>
         <p>Minhas ideias surgem do que gosto: moda, estética, músicas, filmes e experiências do dia a dia.</p>
@@ -650,7 +648,7 @@
       </div>
     </div>
 
-    <form class="form-card reveal reveal-delay-1" onsubmit="event.preventDefault(); alert('Formulário de exemplo — conecte a um serviço de envio de e-mail.');">
+    <form class="form-card" data-aos="fade-up" onsubmit="event.preventDefault(); alert('Formulário de exemplo — conecte a um serviço de envio de e-mail.');">
       <div class="form-row">
         <input type="text" placeholder="Seu nome" required>
         <input type="email" placeholder="Seu e-mail" required>
@@ -660,7 +658,7 @@
       <button type="submit" class="btn btn-primary" style="width:100%;">Enviar mensagem ✉</button>
     </form>
 
-    <div class="github-card reveal reveal-delay-2">
+    <div class="github-card" data-aos="fade-left">
       <div class="gh-icon">🐙</div>
       <h5 style="font-family:var(--font-display); font-size:1.15rem;">meu código vive aqui!</h5>
       <p>Veja mais projetos, estudos e experimentos no meu GitHub.</p>
@@ -670,19 +668,21 @@
   </div>
 </section>
 
-<!-- ============ FOOTER ============ -->
+<!-- FOOTER -->
 <footer>
   <div class="footer-wrap">
     <div>
       <div class="footer-logo">seu nome ♡</div>
       <p style="font-size:.82rem; opacity:.85; margin-top:6px;">Desenvolvimento • Design • Criatividade</p>
     </div>
-    <nav class="footer-links">
-      <a href="#inicio">Início</a>
-      <a href="#sobre">Sobre mim</a>
-      <a href="#habilidades">Habilidades</a>
-      <a href="#projetos">Projetos</a>
-      <a href="#contato">Contato</a>
+    <nav class="footer-links" aria-label="Navegação do rodapé">
+      <ul>
+        <li><a href="#inicio">Início</a></li>
+        <li><a href="#sobre">Sobre mim</a></li>
+        <li><a href="#habilidades">Habilidades</a></li>
+        <li><a href="#projetos">Projetos</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
     </nav>
     <!-- 🔗 LINKS EXTERNOS: suas redes sociais -->
     <div class="footer-social">
@@ -696,6 +696,10 @@
 </footer>
 
 <div class="to-top" id="toTop">↑</div>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
 
 <script>
   // menu mobile
@@ -715,37 +719,89 @@
   overlay.addEventListener('click', closeMenu);
   mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click', closeMenu));
 
-  // scroll reveal
-  const revealEls = document.querySelectorAll('.reveal');
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in-view'); io.unobserve(e.target);} });
-  }, {threshold:.15});
-  revealEls.forEach(el=>io.observe(el));
-
-  // active nav link on scroll
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-links a');
-  window.addEventListener('scroll', ()=>{
-    let current='';
-    sections.forEach(sec=>{
-      if(window.scrollY >= sec.offsetTop - 140) current = sec.getAttribute('id');
-    });
-    navLinks.forEach(l=>{
-      l.classList.toggle('active', l.getAttribute('href') === '#'+current);
-    });
-    document.getElementById('toTop').classList.toggle('show', window.scrollY > 500);
+  // animações ao entrar na tela
+  AOS.init({
+    duration: 700,
+    easing: 'ease-out-cubic',
+    once: true,
+    offset: 80
   });
 
-  document.getElementById('toTop').addEventListener('click', ()=>window.scrollTo({top:0, behavior:'smooth'}));
+  // carrossel de projetos
+  new Swiper('.project-swiper', {
+    slidesPerView: 4,
+    spaceBetween: 24,
+    loop: true,
+    grabCursor: true,
 
-  // carrossel simples de projetos
-  const dots = document.querySelectorAll('.dot');
-  let index = 0;
-  function updateDots(){ dots.forEach((d,i)=>d.classList.toggle('active', i===index)); }
-  document.getElementById('nextBtn').addEventListener('click', ()=>{ index=(index+1)%dots.length; updateDots(); });
-  document.getElementById('prevBtn').addEventListener('click', ()=>{ index=(index-1+dots.length)%dots.length; updateDots(); });
-  dots.forEach((d,i)=>d.addEventListener('click', ()=>{ index=i; updateDots(); }));
-</script>
+    navigation: {
+      nextEl: '#nextBtn',
+      prevEl: '#prevBtn'
+    },
+
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true
+    },
+
+    breakpoints: {
+      0: { slidesPerView: 1 },
+      700: { slidesPerView: 2 },
+      1025: { slidesPerView: 4 }
+    }
+  });
+
+  // microinterações dos botões
+  document.querySelectorAll('.btn').forEach(button => {
+    button.addEventListener('mouseenter', () => {
+      gsap.to(button, {
+        y: -3,
+        duration: 0.2,
+        ease: 'power2.out'
+      });
+    });
+
+    button.addEventListener('mouseleave', () => {
+      gsap.to(button, {
+        y: 0,
+        duration: 0.2,
+        ease: 'power2.out'
+      });
+    });
+  });
+
+  // item ativo do menu
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+
+    sections.forEach(section => {
+      if (window.scrollY >= section.offsetTop - 140) {
+        current = section.id;
+      }
+    });
+
+    navLinks.forEach(link => {
+      link.classList.toggle(
+        'active',
+        link.getAttribute('href') === `#${current}`
+      );
+    });
+
+    document.getElementById('toTop').classList.toggle(
+      'show',
+      window.scrollY > 500
+    );
+  });
+
+  document.getElementById('toTop').addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });</script>
 
 </body>
 </html>

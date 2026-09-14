@@ -66,12 +66,12 @@
   }
   .user-img[src=""]{display:none;} /* enquanto não houver src, some e deixa o placeholder visível */
 
-  /* ---------- decorative floaters ---------- */
+
   .deco{position:absolute; pointer-events:none; opacity:.55; color:var(--rosa-principal); z-index:0; animation:float 6s ease-in-out infinite;}
   .deco.slow{animation-duration:9s;}
   @keyframes float{0%,100%{transform:translateY(0) rotate(0deg);} 50%{transform:translateY(-16px) rotate(8deg);}}
 
-  /* NAVBAR */
+ 
   header{
     position:sticky; top:0; z-index:100;
     background:rgba(255,249,245,0.9);
@@ -128,7 +128,7 @@
   .menu-overlay{position:fixed; inset:0; background:rgba(122,49,83,.35); z-index:140; opacity:0; pointer-events:none; transition:opacity .3s ease;}
   .menu-overlay.open{opacity:1; pointer-events:auto;}
 
-  /* HERO */
+
   .hero{
     max-width:1240px; margin:0 auto; padding:70px 32px 100px;
     display:grid; grid-template-columns:1.1fr 0.9fr; gap:40px; align-items:center;
@@ -155,7 +155,7 @@
     box-shadow:var(--sombra); color:var(--rosa-escuro); z-index:3; animation:float 5s ease-in-out infinite;
   }
 
-  /* SOBRE MIM */
+
   .section-title{
     font-size:2.2rem; color:var(--rosa-escuro); display:flex; align-items:center; gap:10px; justify-content:center; margin-bottom:8px;
   }
@@ -185,7 +185,7 @@
   .info-card li{padding:10px 0; display:flex; gap:10px; align-items:center; font-size:.92rem; border-bottom:1px dashed var(--rosa-claro);}
   .info-card li:last-child{border-bottom:none;}
 
-  /* HABILIDADES */
+
   .habilidades{padding:90px 32px; max-width:1240px; margin:0 auto;}
   .skills-cols{display:grid; grid-template-columns:1fr 1fr; gap:60px;}
   .skills-col h3{display:flex; align-items:center; gap:8px; justify-content:center; color:var(--rosa-escuro); font-size:1.3rem; margin-bottom:26px;}
@@ -199,7 +199,7 @@
   .skill-card:hover .skill-icon{transform:scale(1.18) rotate(-6deg);}
   .skill-card span{font-size:.78rem; font-weight:600; color:var(--vinho);}
 
-  /* PROJETOS */
+
   .projetos{background:var(--rosa-muito-claro); padding:90px 32px;}
   .carousel-wrap{max-width:1240px; margin:0 auto; position:relative;}
   .project-swiper{overflow:hidden; padding:10px 4px 34px;}\n  .swiper-slide{height:auto;}
@@ -227,7 +227,6 @@
   .swiper-pagination-bullet{background:var(--rosa-claro); opacity:1;}
   .swiper-pagination-bullet-active{background:var(--rosa-escuro); width:24px; border-radius:5px;}
 
-  /* MEUS SITES */
   .meus-sites{padding:90px 32px; max-width:1240px; margin:0 auto;}
   .sites-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:24px;}
   .site-card{background:var(--branco); border-radius:18px; overflow:hidden; box-shadow:var(--sombra); transition:transform .3s ease, box-shadow .3s ease;}
@@ -238,7 +237,7 @@
   .site-card-body{padding:16px; text-align:center;}
   .site-card-body h5{color:var(--rosa-escuro); margin-bottom:12px; font-size:1rem;}
 
-  /* POR TRÁS / CONTATO */
+
   .por-tras{background:var(--rosa-muito-claro); padding:90px 32px;}
   .por-tras-grid{max-width:1240px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr 0.9fr; gap:28px;}
   .qa-card{background:var(--branco); border-radius:18px; padding:24px; box-shadow:var(--sombra);}
@@ -262,7 +261,7 @@
   .github-card .gh-icon{font-size:2.6rem;}
   .github-card p{font-size:.85rem; opacity:.9;}
 
-  /* FOOTER */
+
   footer{background:var(--rosa-principal); color:#fff; padding:50px 32px 24px;}
   .footer-wrap{max-width:1240px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:20px; padding-bottom:24px; border-bottom:1px solid rgba(255,255,255,.3);}
   .footer-logo{font-family:var(--font-display); font-size:1.3rem; display:flex; align-items:center; gap:6px;}
@@ -274,7 +273,7 @@
   .footer-social a:hover{background:#fff; color:var(--rosa-escuro); transform:translateY(-4px);}
   .footer-bottom{max-width:1240px; margin:0 auto; padding-top:20px; text-align:center; font-size:.8rem; opacity:.85;}
 
-  /* back to top */
+
   .to-top{
     position:fixed; bottom:28px; right:28px; width:48px; height:48px; border-radius:50%; background:var(--rosa-principal);
     color:#fff; display:flex; align-items:center; justify-content:center; box-shadow:var(--sombra-hover); cursor:pointer;
@@ -283,7 +282,7 @@
   .to-top.show{opacity:1; pointer-events:auto;}
   .to-top:hover{transform:translateY(-4px) scale(1.05);}
 
-  /* RESPONSIVE */
+
   @media (max-width:1024px){
     .sobre-grid{grid-template-columns:1fr 1fr;}
     .info-card{grid-column:1/-1;}
@@ -328,7 +327,7 @@
 </head>
 <body>
 
-<!-- HEADER / NAV -->
+
 <header>
   <div class="nav-wrap">
     <a href="#inicio" class="logo">Ana Chiari ♡</a>
@@ -361,7 +360,7 @@
   </ul>
 </nav>
 
-<!-- HERO -->
+
 <section id="inicio" class="hero">
   <div class="deco slow" style="top:10%; left:2%; font-size:1.6rem;">✦</div>
   <div class="deco" style="top:70%; left:8%; font-size:1.3rem;">♡</div>
@@ -392,7 +391,7 @@
   </div>
 </section>
 
-<!-- SOBRE MIM -->
+
 <section id="sobre" class="sobre-mim">
   <div class="sobre-grid">
     <div class="reveal">
@@ -438,7 +437,7 @@
   </div>
 </section>
 
-<!-- HABILIDADES -->
+
 <section id="habilidades" class="habilidades">
   <h2 class="section-title">✦ minhas habilidades ♡</h2>
   <p class="section-sub">O que uso no dia a dia para criar e resolver problemas</p>
@@ -472,7 +471,7 @@
   </div>
 </section>
 
-<!-- PROJETOS -->
+
 <section id="projetos" class="projetos">
   <h2 class="section-title">✦ projetos ♡</h2>
   <p class="section-sub">Alguns projetos que desenvolvi com muito energeico e código ☕</p>
@@ -494,7 +493,6 @@
           <p>Descrição</p>
           <div class="tech-line">HTML • CSS • JavaScript</div>
           <div class="project-actions">
-            <!-- 🔗 LINKS EXTERNOS do projeto 1 -->
             <a href="https://SEU-LINK-DO-SITE-AQUI" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Visitar site ↗</a>
             <a href="https://github.com/SEU-USUARIO/SEU-REPOSITORIO" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">Ver código ⌥</a>
           </div>
@@ -566,7 +564,7 @@
 
   <div class="sites-grid" data-aos="fade-up">
 
-    <!-- ===== SITE 1 ===== -->
+
     <div class="site-card">
       <div class="browser-bar"><span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span></div>
 

@@ -61,10 +61,29 @@
   .img-fallback small{font-weight:400; opacity:.75; font-size:.68rem; max-width:200px;}
   .user-img{
     position:absolute; inset:0; width:100%; height:100%;
-    object-fit:contain; /* mostra a imagem inteira, seja qual for o formato */
+    object-fit:cover; object-position:center; /* preenche a caixa inteira, sem sobrar espaço nos cantos */
     background:var(--rosa-muito-claro);
   }
   .user-img[src=""]{display:none;} /* enquanto não houver src, some e deixa o placeholder visível */
+  /* quando já existe uma imagem de verdade, tira a borda tracejada e o fundo listrado do placeholder */
+  .img-box:has(.user-img[src]:not([src=""])){
+    border-style:solid;
+    background:var(--branco);
+  }
+
+  /* caixinhas de imagem que ficam nos lugares onde tinha emoji (ícones) */
+  .icon-box{
+    position:relative; width:44px; height:44px; margin:0 auto 8px;
+    border-radius:12px; overflow:hidden;
+    border:2px dashed var(--rosa-principal);
+    background:repeating-linear-gradient(135deg, var(--rosa-muito-claro), var(--rosa-muito-claro) 8px, #ffe6f0 8px, #ffe6f0 16px);
+  }
+  .icon-box .user-img{object-fit:contain; padding:6px;}
+  .icon-box:has(.user-img[src]:not([src=""])){border-style:solid; background:var(--branco);}
+
+  /* ícone pequeno "inline", para dentro de textos/listas/botões redondos */
+  .icon-inline{width:20px; height:20px; object-fit:contain; display:inline-block; vertical-align:middle;}
+  .icon-inline[src=""]{display:none;}
 
 
   .deco{position:absolute; pointer-events:none; opacity:.55; color:var(--rosa-principal); z-index:0; animation:float 6s ease-in-out infinite;}
@@ -258,7 +277,7 @@
     background:var(--vinho); color:#fff; border-radius:20px; padding:30px; text-align:center;
     display:flex; flex-direction:column; align-items:center; gap:14px; box-shadow:var(--sombra);
   }
-  .github-card .gh-icon{font-size:2.6rem;}
+  .github-card .gh-icon{width:60px; height:60px; margin:0 auto;}
   .github-card p{font-size:.85rem; opacity:.9;}
 
 
@@ -425,9 +444,9 @@
     <div class="reveal">
       <div class="info-card" data-aos="fade-left">
         <ul>
-          <li>📍 Belo Horizonte, MG</li>
-          <li>🎓 COTEMIG Barroca</li>
-          <li>💻 Informática</li>
+          <li><img class="icon-inline" src="" alt="Ícone localização"> Belo Horizonte, MG</li>
+          <li><img class="icon-inline" src="" alt="Ícone formação"> COTEMIG Barroca</li>
+          <li><img class="icon-inline" src="" alt="Ícone curso"> Informática</li>
           <li>✦ Em constante evolução</li>
         </ul>
       </div>
@@ -442,28 +461,28 @@
 
   <div class="skills-cols">
     <div class="skills-col" data-aos="fade-up">
-      <h3>💻 hard skills</h3>
+      <h3><img class="icon-inline" src="" alt="Ícone hard skills"> hard skills</h3>
       <div class="skills-grid">
-        <div class="skill-card"><span class="skill-icon">🌐</span><br><span>HTML</span></div>
-        <div class="skill-card"><span class="skill-icon">🎨</span><br><span>CSS</span></div>
-        <div class="skill-card"><span class="skill-icon">⚡</span><br><span>JavaScript</span></div>
-        <div class="skill-card"><span class="skill-icon">☕</span><br><span>Java</span></div>
-        <div class="skill-card"><span class="skill-icon">🔷</span><br><span>C#</span></div>
-        <div class="skill-card"><span class="skill-icon">🐬</span><br><span>MySQL</span></div>
-        <div class="skill-card"><span class="skill-icon">🐙</span><br><span>Git &amp; GitHub</span></div>
-        <div class="skill-card"><span class="skill-icon">🎯</span><br><span>Figma</span></div>
+        <div class="skill-card"><div class="icon-box"><img class="user-img" src="" alt="Ícone HTML"></div><span>HTML</span></div>
+        <div class="skill-card"><div class="icon-box"><img class="user-img" src="" alt="Ícone CSS"></div><span>CSS</span></div>
+        <div class="skill-card"><div class="icon-box"><img class="user-img" src="" alt="Ícone JavaScript"></div><span>JavaScript</span></div>
+        <div class="skill-card"><div class="icon-box"><img class="user-img" src="" alt="Ícone Java"></div><span>Java</span></div>
+        <div class="skill-card"><div class="icon-box"><img class="user-img" src="" alt="Ícone C#"></div><span>C#</span></div>
+        <div class="skill-card"><div class="icon-box"><img class="user-img" src="" alt="Ícone MySQL"></div><span>MySQL</span></div>
+        <div class="skill-card"><div class="icon-box"><img class="user-img" src="" alt="Ícone Git e GitHub"></div><span>Git &amp; GitHub</span></div>
+        <div class="skill-card"><div class="icon-box"><img class="user-img" src="" alt="Ícone Figma"></div><span>Figma</span></div>
       </div>
     </div>
 
     <div class="skills-col" data-aos="fade-up" data-aos-delay="100">
       <h3>♡ soft skills</h3>
       <div class="skills-grid">
-        <div class="skill-card"><span class="skill-icon">💡</span><br><span>Criatividade</span></div>
-        <div class="skill-card"><span class="skill-icon">📅</span><br><span>Organização</span></div>
-        <div class="skill-card"><span class="skill-icon">💬</span><br><span>Comunicação</span></div>
-        <div class="skill-card"><span class="skill-icon">🤝</span><br><span>Trabalho em equipe</span></div>
-        <div class="skill-card"><span class="skill-icon">🧩</span><br><span>Resolução de problemas</span></div>
-        <div class="skill-card"><span class="skill-icon">📖</span><br><span>Aprendizado contínuo</span></div>
+        <div class="skill-card"><div class="icon-box"><img class="user-img" src="" alt="Ícone Criatividade"></div><span>Criatividade</span></div>
+        <div class="skill-card"><div class="icon-box"><img class="user-img" src="" alt="Ícone Organização"></div><span>Organização</span></div>
+        <div class="skill-card"><div class="icon-box"><img class="user-img" src="" alt="Ícone Comunicação"></div><span>Comunicação</span></div>
+        <div class="skill-card"><div class="icon-box"><img class="user-img" src="" alt="Ícone Trabalho em equipe"></div><span>Trabalho em equipe</span></div>
+        <div class="skill-card"><div class="icon-box"><img class="user-img" src="" alt="Ícone Resolução de problemas"></div><span>Resolução de problemas</span></div>
+        <div class="skill-card"><div class="icon-box"><img class="user-img" src="" alt="Ícone Aprendizado contínuo"></div><span>Aprendizado contínuo</span></div>
       </div>
     </div>
   </div>
@@ -625,15 +644,15 @@
   <div class="por-tras-grid">
     <div class="qa-cards" data-aos="fade-up">
       <div class="qa-card">
-        <h5>💭 Como tenho ideias?</h5>
+        <h5><img class="icon-inline" src="" alt="Ícone ideias"> Como tenho ideias?</h5>
         <p>Minhas ideias surgem do que gosto e de experiências do dia a dia.</p>
       </div>
       <div class="qa-card">
-        <h5>📚 O que estou aprendendo?</h5>
+        <h5><img class="icon-inline" src="" alt="Ícone aprendizado"> O que estou aprendendo?</h5>
         <p>Atualmente estou me aprofundando em JavaScript, design de interfaces e boas práticas de desenvolvimento.</p>
       </div>
       <div class="qa-card">
-        <h5>🎯 Objetivos</h5>
+        <h5><img class="icon-inline" src="" alt="Ícone objetivos"> Objetivos</h5>
         <p>Quero continuar evoluindo com projetos que unam desenvolvimento e criatividade e que inspirem pessoas.</p>
       </div>
     </div>
@@ -645,11 +664,11 @@
       </div>
       <input type="text" placeholder="Assunto" style="margin-bottom:14px;">
       <textarea placeholder="Sua mensagem" required></textarea>
-      <button type="submit" class="btn btn-primary" style="width:100%;">Enviar mensagem ✉</button>
+      <button type="submit" class="btn btn-primary" style="width:100%;">Enviar mensagem</button>
     </form>
 
     <div class="github-card" data-aos="fade-left">
-      <div class="gh-icon">🐙</div>
+      <div class="icon-box gh-icon"><img class="user-img" src="" alt="Ícone GitHub"></div>
       <h5 style="font-family:var(--font-display); font-size:1.15rem;">meu código vive aqui!</h5>
       <p>Veja mais projetos, estudos e experimentos no meu GitHub.</p>
       <a href="https://github.com/EnasChiari" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="background:#fff; color:var(--vinho);">Visitar GitHub ↗</a>
@@ -675,10 +694,10 @@
     </nav>
 
     <div class="footer-social">
-      <a href="https://github.com/EnasChiari" target="_blank" rel="noopener noreferrer" aria-label="GitHub">🐙</a>
+      <a href="https://github.com/EnasChiari" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><img class="icon-inline" src="" alt="Ícone GitHub"></a>
       <a href="https://linkedin.com/in/SEU-USUARIO" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">in</a>
-      <a href="https://instagram.com/Chiari.ana" target="_blank" rel="noopener noreferrer" aria-label="Instagram">📷</a>
-      <a href="mailto:anaclarachiari45@gmail.com" aria-label="Email">✉</a>
+      <a href="https://instagram.com/Chiari.ana" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><img class="icon-inline" src="" alt="Ícone Instagram"></a>
+      <a href="mailto:anaclarachiari45@gmail.com" aria-label="Email"><img class="icon-inline" src="" alt="Ícone Email"></a>
     </div>
   </div>
   <p class="footer-bottom">© 2026 Ana Clara. Feito com ♡ e muito código.</p>

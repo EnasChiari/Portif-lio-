@@ -205,17 +205,37 @@
 
 
   .habilidades{padding:90px 32px; max-width:1240px; margin:0 auto;}
-  .skills-cols{display:grid; grid-template-columns:1fr 1fr; gap:60px;}
-  .skills-col h3{display:flex; align-items:center; gap:8px; justify-content:center; color:var(--rosa-escuro); font-size:1.3rem; margin-bottom:26px;}
-  .skills-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:16px;}
-  .skill-card{
+  .colunas-habilidades{display:grid; grid-template-columns:1fr 1fr; gap:60px;}
+  .coluna-habilidades h3{display:flex; align-items:center; gap:8px; justify-content:center; color:var(--rosa-escuro); font-size:1.3rem; margin-bottom:26px;}
+  .grade-habilidades{display:grid; grid-template-columns:repeat(4,1fr); gap:16px; list-style:none; margin:0; padding:0;}
+  .cartao-habilidade{
     background:var(--branco); border-radius:16px; padding:20px 10px; text-align:center; box-shadow:var(--sombra);
     border:2px solid transparent; transition:transform .3s cubic-bezier(.34,1.56,.64,1), box-shadow .3s ease, border-color .3s ease;
   }
-  .skill-card:hover{transform:translateY(-8px); box-shadow:var(--sombra-hover); border-color:var(--rosa-principal);}
-  .skill-icon{font-size:1.9rem; margin-bottom:8px; display:inline-block; transition:transform .3s ease;}
-  .skill-card:hover .skill-icon{transform:scale(1.18) rotate(-6deg);}
-  .skill-card span{font-size:.78rem; font-weight:600; color:var(--vinho);}
+  .cartao-habilidade:hover{transform:translateY(-8px); box-shadow:var(--sombra-hover); border-color:var(--rosa-principal);}
+  .icone-habilidade{font-size:1.9rem; margin-bottom:8px; display:inline-block; transition:transform .3s ease;}
+  .cartao-habilidade:hover .icone-habilidade{transform:scale(1.18) rotate(-6deg);}
+  .cartao-habilidade span{font-size:.78rem; font-weight:600; color:var(--vinho);}
+
+
+  .experiencia{background:var(--rosa-muito-claro); padding:90px 32px;}
+  .experiencia-conteudo{max-width:900px; margin:0 auto;}
+  .experiencia-intro{background:var(--branco); border-radius:var(--radius); padding:26px 30px; box-shadow:var(--sombra); margin-bottom:30px;}
+  .experiencia-intro p{line-height:1.8; color:var(--texto); font-size:.95rem;}
+  .experiencia-cartao{background:var(--branco); border-radius:var(--radius); padding:30px; box-shadow:var(--sombra); margin-bottom:30px; position:relative;}
+  .experiencia-cartao::before{content:"✦"; position:absolute; top:-14px; left:26px; background:var(--rosa-principal); color:#fff; width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:.9rem;}
+  .experiencia-cabecalho{display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin-bottom:18px;}
+  .experiencia-cabecalho h3{font-family:var(--font-display); color:var(--rosa-escuro); font-size:1.2rem;}
+  .experiencia-cargo{background:var(--rosa-claro); color:var(--vinho); font-weight:600; font-size:.78rem; padding:6px 14px; border-radius:999px;}
+  .experiencia-periodo{color:var(--vinho); opacity:.75; font-size:.82rem; font-weight:600;}
+  .experiencia-lista li{padding:8px 0; padding-left:22px; position:relative; font-size:.92rem; color:var(--texto); border-bottom:1px dashed var(--rosa-claro);}
+  .experiencia-lista li:last-child{border-bottom:none;}
+  .experiencia-lista li::before{content:"✦"; position:absolute; left:0; color:var(--rosa-principal); font-size:.8rem;}
+  .experiencia-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
+  .experiencia-bloco{background:var(--branco); border-radius:18px; padding:24px; box-shadow:var(--sombra);}
+  .experiencia-bloco h4{font-family:var(--font-display); color:var(--rosa-escuro); font-size:1.05rem; margin-bottom:14px;}
+  .experiencia-tags{display:flex; flex-wrap:wrap; gap:10px;}
+  .experiencia-tags li{background:var(--rosa-muito-claro); color:var(--vinho); font-size:.8rem; font-weight:600; padding:8px 14px; border-radius:999px; border:1px solid var(--rosa-claro);}
 
 
   .projetos{background:var(--rosa-muito-claro); padding:90px 32px;}
@@ -304,11 +324,12 @@
   @media (max-width:1024px){
     .sobre-grid{grid-template-columns:1fr 1fr;}
     .info-card{grid-column:1/-1;}
-    .skills-grid{grid-template-columns:repeat(4,1fr);}
+    .grade-habilidades{grid-template-columns:repeat(4,1fr);}
     
     .sites-grid{grid-template-columns:repeat(2,1fr);}
     .por-tras-grid{grid-template-columns:1fr 1fr;}
     .form-card{grid-column:1/-1;}
+    .experiencia-grid{grid-template-columns:1fr;}
   }
 
   @media (max-width:840px){
@@ -321,8 +342,8 @@
     .hero-visual{order:-1; min-height:320px;}
     .hero-photo-frame{width:250px; height:300px;}
     .sobre-grid{grid-template-columns:1fr;}
-    .skills-cols{grid-template-columns:1fr; gap:40px;}
-    .skills-grid{grid-template-columns:repeat(3,1fr);}
+    .colunas-habilidades{grid-template-columns:1fr; gap:40px;}
+    .grade-habilidades{grid-template-columns:repeat(3,1fr);}
     
     .carousel-arrow{display:none;}
     .sites-grid{grid-template-columns:1fr 1fr;}
@@ -336,7 +357,7 @@
     .hero{padding:30px 20px 60px;}
     .hero h1{font-size:2.1rem;}
     .sobre-mim, .habilidades, .projetos, .meus-sites, .por-tras{padding:60px 20px;}
-    .skills-grid{grid-template-columns:repeat(2,1fr);}
+    .grade-habilidades{grid-template-columns:repeat(2,1fr);}
     .sites-grid{grid-template-columns:1fr;}
     .form-row{grid-template-columns:1fr;}
     .btn{padding:11px 20px; font-size:.85rem;}
@@ -353,6 +374,7 @@
       <ul>
         <li><a href="#inicio" class="active">Início</a></li>
         <li><a href="#sobre">Sobre mim</a></li>
+        <li><a href="#experiencia">Experiência</a></li>
         <li><a href="#habilidades">Habilidades</a></li>
         <li><a href="#projetos">Projetos</a></li>
         <li><a href="#sites">Meus sites</a></li>
@@ -371,6 +393,7 @@
   <ul>
     <li><a href="#inicio">Início</a></li>
     <li><a href="#sobre">Sobre mim</a></li>
+    <li><a href="#experiencia">Experiência</a></li>
     <li><a href="#habilidades">Habilidades</a></li>
     <li><a href="#projetos">Projetos</a></li>
     <li><a href="#sites">Meus sites</a></li>
@@ -458,33 +481,83 @@
   <h2 class="section-title">✦ minhas habilidades ♡</h2>
   <p class="section-sub">O que uso no dia a dia para criar e resolver problemas</p>
 
-  <div class="skills-cols">
-    <div class="skills-col" data-aos="fade-up">
+  <div class="colunas-habilidades">
+    <div class="coluna-habilidades" data-aos="fade-up">
       <h3><img class="icon-inline" src="" alt="Ícone hard skills"> hard skills</h3>
-      <div class="skills-grid">
-        <div class="skill-card"><div class="icon-box"><img class="user-img" src="" alt="Ícone HTML"></div><span>HTML</span></div>
-        <div class="skill-card"><div class="icon-box"><img class="user-img" src="" alt="Ícone CSS"></div><span>CSS</span></div>
-        <div class="skill-card"><div class="icon-box"><img class="user-img" src="" alt="Ícone JavaScript"></div><span>JavaScript</span></div>
-        <div class="skill-card"><div class="icon-box"><img class="user-img" src="" alt="Ícone Java"></div><span>Java</span></div>
-        <div class="skill-card"><div class="icon-box"><img class="user-img" src="" alt="Ícone C#"></div><span>C#</span></div>
-        <div class="skill-card"><div class="icon-box"><img class="user-img" src="" alt="Ícone MySQL"></div><span>MySQL</span></div>
-        <div class="skill-card"><div class="icon-box"><img class="user-img" src="" alt="Ícone Portugol"></div><span>Portugol</span></div>
-        <div class="skill-card"><div class="icon-box"><img class="user-img" src="github.webp" alt="Ícone Git e GitHub"></div><span>Git &amp; GitHub</span></div>
-        <div class="skill-card"><div class="icon-box"><img class="user-img" src="" alt="Ícone Figma"></div><span>Figma</span></div>
-        <div class="skill-card"><div class="icon-box"><img class="user-img" src="" alt="Ícone Linux"></div><span>Linux</span></div>
-        <div class="skill-card"><div class="icon-box"><img class="user-img" src="" alt="Ícone Eletrônica"></div><span>Eletrônica basica</span></div>
-      </div>
+      <ul class="grade-habilidades">
+        <li class="cartao-habilidade"><div class="icon-box"><img class="user-img" src="" alt="Ícone HTML"></div><span>HTML</span></li>
+        <li class="cartao-habilidade"><div class="icon-box"><img class="user-img" src="" alt="Ícone CSS"></div><span>CSS</span></li>
+        <li class="cartao-habilidade"><div class="icon-box"><img class="user-img" src="" alt="Ícone JavaScript"></div><span>JavaScript</span></li>
+        <li class="cartao-habilidade"><div class="icon-box"><img class="user-img" src="" alt="Ícone Java"></div><span>Java</span></li>
+        <li class="cartao-habilidade"><div class="icon-box"><img class="user-img" src="" alt="Ícone C#"></div><span>C#</span></li>
+        <li class="cartao-habilidade"><div class="icon-box"><img class="user-img" src="" alt="Ícone MySQL"></div><span>MySQL</span></li>
+        <li class="cartao-habilidade"><div class="icon-box"><img class="user-img" src="" alt="Ícone Portugol"></div><span>Portugol</span></li>
+        <li class="cartao-habilidade"><div class="icon-box"><img class="user-img" src="github.webp" alt="Ícone Git e GitHub"></div><span>Git &amp; GitHub</span></li>
+        <li class="cartao-habilidade"><div class="icon-box"><img class="user-img" src="" alt="Ícone Figma"></div><span>Figma</span></li>
+        <li class="cartao-habilidade"><div class="icon-box"><img class="user-img" src="" alt="Ícone Linux"></div><span>Linux</span></li>
+        <li class="cartao-habilidade"><div class="icon-box"><img class="user-img" src="" alt="Ícone Eletrônica"></div><span>Eletrônica basica</span></li>
+      </ul>
     </div>
 
-    <div class="skills-col" data-aos="fade-up" data-aos-delay="100">
+    <div class="coluna-habilidades" data-aos="fade-up" data-aos-delay="100">
       <h3>♡ soft skills</h3>
-      <div class="skills-grid">
-        <div class="skill-card"><div class="icon-box"><img class="user-img" src="" alt="Ícone Criatividade"></div><span>Criatividade</span></div>
-        <div class="skill-card"><div class="icon-box"><img class="user-img" src="" alt="Ícone Organização"></div><span>Organização</span></div>
-        <div class="skill-card"><div class="icon-box"><img class="user-img" src="" alt="Ícone Comunicação"></div><span>Comunicação</span></div>
-        <div class="skill-card"><div class="icon-box"><img class="user-img" src="" alt="Ícone Trabalho em equipe"></div><span>Trabalho em equipe</span></div>
-        <div class="skill-card"><div class="icon-box"><img class="user-img" src="" alt="Ícone Resolução de problemas"></div><span>Resolução de problemas</span></div>
-        <div class="skill-card"><div class="icon-box"><img class="user-img" src="" alt="Ícone Aprendizado contínuo"></div><span>Aprendizado contínuo</span></div>
+      <ul class="grade-habilidades">
+        <li class="cartao-habilidade"><div class="icon-box"><img class="user-img" src="" alt="Ícone Criatividade"></div><span>Criatividade</span></li>
+        <li class="cartao-habilidade"><div class="icon-box"><img class="user-img" src="" alt="Ícone Organização"></div><span>Organização</span></li>
+        <li class="cartao-habilidade"><div class="icon-box"><img class="user-img" src="" alt="Ícone Comunicação"></div><span>Comunicação</span></li>
+        <li class="cartao-habilidade"><div class="icon-box"><img class="user-img" src="" alt="Ícone Trabalho em equipe"></div><span>Trabalho em equipe</span></li>
+        <li class="cartao-habilidade"><div class="icon-box"><img class="user-img" src="" alt="Ícone Resolução de problemas"></div><span>Resolução de problemas</span></li>
+        <li class="cartao-habilidade"><div class="icon-box"><img class="user-img" src="" alt="Ícone Aprendizado contínuo"></div><span>Aprendizado contínuo</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<section id="experiencia" class="experiencia">
+  <h2 class="section-title">✦ experiência ♡</h2>
+  <p class="section-sub">Minha trajetória até aqui</p>
+
+  <div class="experiencia-conteudo">
+    <div class="experiencia-intro" data-aos="fade-up">
+      <p>Não possui experiência formal comprovada em TI, porém atuou por 12 meses em regime de meio período no laboratório de eletrônica da SG Track, adquirindo vivência prática em ambiente tecnológico, suporte a rotinas técnicas e contato com sistemas e equipamentos eletrônicos. Perfil proativo, organizada, com facilidade de aprendizado e grande interesse em desenvolvimento profissional na área de TI.</p>
+    </div>
+
+    <div class="experiencia-cartao" data-aos="fade-up">
+      <div class="experiencia-cabecalho">
+        <h3>SG Track – Laboratório de Eletrônica</h3>
+        <span class="experiencia-cargo">Auxílio Técnico (Meio Período)</span>
+        <span class="experiencia-periodo">Período: 12 meses</span>
+      </div>
+      <ul class="experiencia-lista">
+        <li>Apoio nas rotinas do laboratório de eletrônica</li>
+        <li>Organização e controle de equipamentos e materiais</li>
+        <li>Auxílio em testes e verificação de funcionamento de dispositivos</li>
+        <li>Identificação básica de falhas e apoio em manutenção</li>
+        <li>Contato com processos tecnológicos e sistemas embarcados</li>
+      </ul>
+    </div>
+
+    <div class="experiencia-grid">
+      <div class="experiencia-bloco" data-aos="fade-up">
+        <h4>Áreas de interesse em TI</h4>
+        <ul class="experiencia-tags">
+          <li>Suporte Técnico</li>
+          <li>Infraestrutura</li>
+          <li>Sistemas</li>
+          <li>Testes de Software</li>
+          <li>Tecnologia aplicada a Hardware e Eletrônica</li>
+        </ul>
+      </div>
+      <div class="experiencia-bloco" data-aos="fade-up" data-aos-delay="100">
+        <h4>Competências</h4>
+        <ul class="experiencia-tags">
+          <li>Facilidade de aprendizado</li>
+          <li>Organização e responsabilidade</li>
+          <li>Trabalho em equipe</li>
+          <li>Interesse em tecnologia</li>
+          <li>Comprometimento e dedicação</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -689,6 +762,7 @@
       <ul>
         <li><a href="#inicio">Início</a></li>
         <li><a href="#sobre">Sobre mim</a></li>
+        <li><a href="#experiencia">Experiência</a></li>
         <li><a href="#habilidades">Habilidades</a></li>
         <li><a href="#projetos">Projetos</a></li>
         <li><a href="#contato">Contato</a></li>

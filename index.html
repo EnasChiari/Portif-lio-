@@ -61,17 +61,16 @@
   .img-fallback small{font-weight:400; opacity:.75; font-size:.68rem; max-width:200px;}
   .user-img{
     position:absolute; inset:0; width:100%; height:100%;
-    object-fit:cover; object-position:center; /* preenche a caixa inteira, sem sobrar espaço nos cantos */
+    object-fit:cover; object-position:center; 
     background:var(--rosa-muito-claro);
   }
-  .user-img[src=""]{display:none;} /* enquanto não houver src, some e deixa o placeholder visível */
-  /* quando já existe uma imagem de verdade, tira a borda tracejada e o fundo listrado do placeholder */
+  .user-img[src=""]{display:none;} 
   .img-box:has(.user-img[src]:not([src=""])){
     border-style:solid;
     background:var(--branco);
   }
 
-  /* caixinhas de imagem que ficam nos lugares onde tinha emoji (ícones) */
+
   .icon-box{
     position:relative; width:44px; height:44px; margin:0 auto 8px;
     border-radius:12px; overflow:hidden;
@@ -81,7 +80,7 @@
   .icon-box .user-img{object-fit:contain; padding:6px;}
   .icon-box:has(.user-img[src]:not([src=""])){border-style:solid; background:var(--branco);}
 
-  /* ícone pequeno "inline", para dentro de textos/listas/botões redondos */
+
   .icon-inline{width:20px; height:20px; object-fit:contain; display:inline-block; vertical-align:middle;}
   .icon-inline[src=""]{display:none;}
 
@@ -469,8 +468,9 @@
         <div class="skill-card"><div class="icon-box"><img class="user-img" src="" alt="Ícone Java"></div><span>Java</span></div>
         <div class="skill-card"><div class="icon-box"><img class="user-img" src="" alt="Ícone C#"></div><span>C#</span></div>
         <div class="skill-card"><div class="icon-box"><img class="user-img" src="" alt="Ícone MySQL"></div><span>MySQL</span></div>
-        <div class="skill-card"><div class="icon-box"><img class="user-img" src="" alt="Ícone Git e GitHub"></div><span>Git &amp; GitHub</span></div>
+        <div class="skill-card"><div class="icon-box"><img class="user-img" src="github.webp" alt="Ícone Git e GitHub"></div><span>Git &amp; GitHub</span></div>
         <div class="skill-card"><div class="icon-box"><img class="user-img" src="" alt="Ícone Figma"></div><span>Figma</span></div>
+        <div class="skill-card"><div class="icon-box"><img class="user-img" src="" alt="Ícone Linux"></div><span>Linux</span></div>
       </div>
     </div>
 
